@@ -6,6 +6,38 @@ import copy
 import math
 import random
 
+def count_neighbourhood(grid, row, col):
+    """ 
+    Sums the values of a 3x3 subset of cells.
+    Assumes toroidal geometry for central cells located on grid borders.
+    Cell values must be integers.
+
+    Args:
+
+        grid:
+            A list of lists defining a 2D grid.
+
+        row:
+            The grid row of the central cell.
+
+        col:
+            The grid column of the central cell.
+
+    Returns:
+
+        count:
+            The sum of integer values in a 3x3 grid.
+    """
+    num_rows, num_cols = len(grid), len(grid[0])
+    count = 0
+    for row_offset in range(-1, 2):
+        for col_offset in range(-1, 2):
+            neighbour_row = (row + row_offset + num_rows) % num_rows  # Toroidal geometry: grid[len(grid)] becomes grid[0]
+            neighbour_col = (col + col_offset + num_cols) % num_cols
+            count += grid[neighbour_row][neighbour_col]
+    return count
+
+
 def create(num_rows, num_cols, value):
     """ 
     Creates a 2D grid (a list of lists).
@@ -52,60 +84,6 @@ def display(grid, cell_states):
             display_row.append(cell_states[cell])
         output += (" ".join(display_row) + "\n")
     return output
-
-
-def count_neighbourhood(grid, row, col):
-    """ 
-    Sums the values of a 3x3 subset of cells.
-    Assumes toroidal geometry for central cells located on grid borders.
-    Cell values must be integers.
-
-    Args:
-
-        grid:
-            A list of lists defining a 2D grid.
-
-        row:
-            The grid row of the central cell.
-
-        col:
-            The grid column of the central cell.
-
-    Returns:
-
-        count:
-            The sum of integer values in a 3x3 grid.
-    """
-    num_rows, num_cols = len(grid), len(grid[0])
-    count = 0
-    for row_offset in range(-1, 2):
-        for col_offset in range(-1, 2):
-            neighbour_row = (row + row_offset + num_rows) % num_rows  # Toroidal geometry: grid[len(grid)] becomes grid[0]
-            neighbour_col = (col + col_offset + num_cols) % num_cols
-            count += grid[neighbour_row][neighbour_col]
-    return count
-
-
-def value_check(grid, val):
-    """ 
-    Checks if any cells in the grid have a specified value.
-
-    Args:
-
-        grid:
-            A list of lists defining a 2D grid.
-
-        val:
-            The value to check for.
-
-    Returns:
-
-        True, upon finding val at any location in the grid.
-    """
-    for row in grid:
-        for cell in row:
-            if cell == val:
-                return True
                 
 
 def seed(grid, seed_val, seed_percentage):
@@ -165,3 +143,25 @@ def update(grid, val1, val2):
                 pass
             else:
                 grid[row][col] = val1
+
+
+def value_check(grid, val):
+    """ 
+    Checks if any cells in the grid have a specified value.
+
+    Args:
+
+        grid:
+            A list of lists defining a 2D grid.
+
+        val:
+            The value to check for.
+
+    Returns:
+
+        True, upon finding val at any location in the grid.
+    """
+    for row in grid:
+        for cell in row:
+            if cell == val:
+                return True
