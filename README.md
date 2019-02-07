@@ -22,7 +22,7 @@ The usual rules for cell interactions are applied:
 </br>
 The following assumptions have been made:</br> 
 
-  Cells are selected during seeding at random.  
+  Cells are selected randomly for seeding the initial grid.  
 
   All cell interactions occur simultaneously in an iteration.  
 
