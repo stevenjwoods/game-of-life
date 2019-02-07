@@ -10,14 +10,17 @@ The game can be run by cloning this repository and running, from the game-of-lif
  
  </br>
  This implementation uses toroidal geometry to simulate an infinite grid.  
- The usual rules for cell interactions are applied:  
+ This means the top row is considered adjacent to the bottom row and the left-most column considered adjacent to the right-most column.  
+
+</br>
+The usual rules for cell interactions are applied:  
    
  • A live cell with fewer than 2 neighbours dies by underpopulation.  
  • A live cell with more than 3 neighbours dies by overpopulation.  
  • A dead/empty cell with exactly 3 neighbours becomes live by reproduction.  
   
 </br>
-The following assumptions have been made:  
+The following assumptions have been made:</br> 
 
   Cells are selected during seeding at random.  
 
