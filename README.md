@@ -28,4 +28,4 @@ The following assumptions have been made:</br>
 
   Cell age is not relevant. This has interesting implications:  
   • All live cells are equal. There is no maturation; new and old cells are just as capable of reproduction.  
-  • There is no age maximum lifespan for cells: they can live forever!
+  • There is no maximum lifespan for cells: they can live forever!
